@@ -1,5 +1,7 @@
 # DiaDoCuringaGo
 
+[![Build Status](https://travis-ci.org/0unit/DiaDoCuringaGo.png)](https://travis-ci.org/0unit/DiaDoCuringaGo)
+
 Convert Gregorian Calendar to Fiction Jostei Gardner Calendar
 
 364 dias representados cada um por uma carta 52 semanas, uma para cada carta 13 meses, um para cada numero 28 dias em cada mês O dia 365 é o um dia extra o dia do curinga A cada quatro anos a dois dias extras o Duplo dia do curinga
