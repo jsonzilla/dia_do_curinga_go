@@ -6,8 +6,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
-
-	"../ddc"
+	"github.com/0unit/DiaDoCuringaGo/lib"
 )
 
 func cabecalhoInicial() {
@@ -42,7 +41,7 @@ func limparEntrada(entrada string) dataSimples {
 		dia, _ := strconv.Atoi(args[0])
 		mes, _ := strconv.Atoi(args[1])
 		ano, _ := strconv.Atoi(args[2])
-		return ddc.dataSimples{dia, mes, ano}
+		return dataSimples{dia, mes, ano}
 	}
 
 	return dataSimples{0, 0, 0}

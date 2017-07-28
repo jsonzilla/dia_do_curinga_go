@@ -2,6 +2,7 @@ package ddc
 
 import (
 	"testing"
+	"github.com/0unit/DiaDoCuringaGo/lib"
 )
 
 func Test_ehDataValida(t *testing.T) {
