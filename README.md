@@ -12,9 +12,7 @@ A contagem dos anos começa em 1790
 
 !Não está no livro, levar em conta o hemisfério sul! As estações do ano são marcadas por diferentes naipes assim fornecendo os naipes dos meses.
 
-    outono é paus;
-    verão e ouros;
-    primavera é copas;
-    inverno é espadas;
-
-Ás de espadas dá azar :)
+    outono é naipe de paus;
+    verão e naipe de ouros;
+    primavera é naipe de copas;
+    inverno é naipe de espadas;
