@@ -1,6 +1,7 @@
 # DiaDoCuringaGo
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/3885765f996243a5be0363757aa2d9f9)](https://www.codacy.com/app/0unit/DiaDoCuringaGo?utm_source=github.com&utm_medium=referral&utm_content=0unit/DiaDoCuringaGo&utm_campaign=badger)
+[![codebeat badge](https://codebeat.co/badges/2cc16620-76f1-4b3d-a648-1ccc10c8407b)](https://codebeat.co/projects/github-com-0unit-diadocuringago-master)
 [![Build Status](https://travis-ci.org/0unit/DiaDoCuringaGo.png)](https://travis-ci.org/0unit/DiaDoCuringaGo)
 
 Convert Gregorian Calendar to Fiction Jostei Gardner Calendar
