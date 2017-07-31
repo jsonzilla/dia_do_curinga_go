@@ -1,6 +1,7 @@
 # DiaDoCuringaGo
 
 [![Build Status](https://travis-ci.org/0unit/DiaDoCuringaGo.png)](https://travis-ci.org/0unit/DiaDoCuringaGo)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3885765f996243a5be0363757aa2d9f9)](https://www.codacy.com/app/0unit/DiaDoCuringaGo?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=0unit/DiaDoCuringaGo&amp;utm_campaign=Badge_Grade)
 
 Convert Gregorian Calendar to Fiction Jostei Gardner Calendar
 
