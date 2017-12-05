@@ -4,17 +4,13 @@
 [![codebeat badge](https://codebeat.co/badges/2cc16620-76f1-4b3d-a648-1ccc10c8407b)](https://codebeat.co/projects/github-com-0unit-diadocuringago-master)
 [![Build Status](https://travis-ci.org/0unit/DiaDoCuringaGo.png)](https://travis-ci.org/0unit/DiaDoCuringaGo)
 
-Convert Gregorian Calendar to Fiction Jostei Gardner Calendar
+A Gregorian calendar converter to an annual calendar with 364 days, each representing a playing card. Divided into 52 weeks and 13 months, all with 28 days. Day 365 is an extra day, the day of the wildcard. Every four years to two extra days the double day of the wildcard.
 
-364 dias representados cada um por uma carta 52 semanas, uma para cada carta 13 meses, um para cada numero 28 dias em cada mês O dia 365 é o um dia extra o dia do curinga A cada quatro anos a dois dias extras o Duplo dia do curinga
+The count of years begins in 1790
 
-Somente versões antigas
+Taking into account the southern hemisphere! The seasons of the year are marked by different suits thus providing the suits of the months.
 
-A contagem dos anos começa em 1790
-
-!Não está no livro, levar em conta o hemisfério sul! As estações do ano são marcadas por diferentes naipes assim fornecendo os naipes dos meses.
-
-    outono é naipe de paus;
-    verão e naipe de ouros;
-    primavera é naipe de copas;
-    inverno é naipe de espadas;
+* Autumn is a club suit
+* Summer and suit of golds
+* Spring is a cup of tea
+* Winter is swords suit
