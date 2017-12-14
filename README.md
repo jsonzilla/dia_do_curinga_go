@@ -10,7 +10,7 @@ The count of years begins in 1790
 
 Taking into account the southern hemisphere! The seasons of the year are marked by different suits thus providing the suits of the months.
 
-* Autumn is a club suit
-* Summer and suit of golds
-* Spring is a cup of tea
-* Winter is swords suit
+* Autumn is club 
+* Summer and is golds
+* Spring is cup 
+* Winter is swords
