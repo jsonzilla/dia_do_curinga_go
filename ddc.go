@@ -185,18 +185,7 @@ func Frode(dia int, mes int, ano int) string {
 
 	numerodedia := corrigeDiaFrodeVerificaBissexto(diaDoAno(dia, mes, ano), ano)
 
-	saida := ""
-
-	if numerodedia < 365 {
-		saida += "\n\tDia " + cartas[cartaDiaFrode(numerodedia)] + naipes[naipeDiaFrode(numerodedia)]
-	}
-	if numerodedia == 365 {
-		saida += "\n\tDia " + cartas[13]
-	}
-	if numerodedia == 366 {
-		saida += "\n\tDuplo dia " + cartas[13]
-	}
-
+	saida := "\n\tDia " + cartas[cartaDiaFrode(numerodedia)] + naipes[naipeDiaFrode(numerodedia)]
 	saida += "\n\tSemana " + cartas[cartaSemanaFrode(numerodedia)] + naipes[naipeSemanaFrode(numerodedia)]
 	saida += "\n\tMes " + cartas[mesNumeral(numerodedia)] + " estacao" + naipes[estacoesFrode(dia, ano)]
 	saida += "\n\tAno " + cartas[cartaAnoFrode(ano)] + naipes[naipeAnoFrode(ano)]
