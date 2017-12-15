@@ -24,7 +24,7 @@ func Test_ehDataValida(t *testing.T) {
 		{"mes 0", args{1, 0, 1999}, false},
 		{"mes 13", args{1, 13, 1999}, false},
 		{"ano 0", args{1, 12, 0}, false},
-		{"ano 0", args{1, 12, 1789}, false},
+		{"ano 0", args{1, 12, 1789}, true},
 		{"ano 0", args{1, 12, 1790}, true},
 		{"ano 9999", args{1, 12, 9999}, true},
 	}
@@ -90,17 +90,17 @@ func TestFrodeSimples(t *testing.T) {
 		args args
 		want string
 	}{
-		{"28, 2, 2011 ", args{28, 2, 2011}, "Jo1O1P1P"},
+		{"28, 2, 2011 ", args{28, 2, 2011}, "KE1O1P1P"},
 		{"1, 3, 2011 ", args{1, 3, 2011}, "1O1O1P1P"},
 		{"27, 2, 2012", args{27, 2, 2012}, "QEKEKP2P"},
 		{"28, 2, 2012", args{28, 2, 2012}, "KE1O1P2P"},
 		{"29, 2, 2012", args{29, 2, 2012}, "Jo1O1P2P"},
 		{"1, 3, 2012", args{1, 3, 2012}, "1O1O1P2P"},
-		{"28, 2, 2013", args{28, 2, 2013}, "Jo1O1P3P"},
+		{"28, 2, 2013", args{28, 2, 2013}, "KE1O1P3P"},
 		{"1, 3, 2013", args{1, 3, 2013}, "1O1O1P3P"},
-		{"28, 2, 2014", args{28, 2, 2014}, "Jo1O1P4P"},
+		{"28, 2, 2014", args{28, 2, 2014}, "KE1O1P4P"},
 		{"1, 3, 2014", args{1, 3, 2014}, "1O1O1P4P"},
-		{"19, 7, 2017", args{19, 7, 2017}, "JC8P6P7P"},
+		{"19, 7, 2017", args{19, 7, 2017}, "10C8P6P7P"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -166,6 +166,7 @@ func Test_diaDoAno(t *testing.T) {
 
 func Test_corrigeDiaFrode(t *testing.T) {
 	type args struct {
+		ano int
 		dia int
 	}
 	tests := []struct {
@@ -173,15 +174,15 @@ func Test_corrigeDiaFrode(t *testing.T) {
 		args args
 		want int
 	}{
-		{"", args{200}, 140},
-		{"", args{59}, 364},
-		{"", args{61}, 1},
-		{"", args{59}, 364},
-		{"", args{60}, 365},
+		{"", args{2011, 200}, 140},
+		{"", args{2011, 59}, 364},
+		{"", args{2011, 61}, 1},
+		{"", args{2011, 59}, 364},
+		{"", args{2011, 60}, 365},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := corrigeDiaFrode(tt.args.dia); got != tt.want {
+			if got := corrigeDiaFrode(tt.args.ano, tt.args.dia); got != tt.want {
 				t.Errorf("corrigeDiaFrode() = %v, want %v", got, tt.want)
 			}
 		})
@@ -218,7 +219,7 @@ func TestFrode(t *testing.T) {
 		args args
 		want string
 	}{
-		{"default", args{19, 7, 2017}, "\n\tDia de de Valete de copas\n\tSemana de Oito de paus\n\tMes de de Seis estacao de paus\n\tAno de de Sete de paus\n\t19/7/2017 e dia numero 141"},
+		{"default", args{19, 7, 2017}, "\n\tDia Dez de copas\n\tSemana Oito de paus\n\tMes Seis estacao de paus\n\tAno Sete de paus\n\t19/7/2017 e dia numero 140"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
