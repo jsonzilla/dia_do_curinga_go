@@ -8,233 +8,233 @@ import (
 	"strings"
 )
 
-func ehAnoBissexto(ano int) bool {
-	return (ano%400 == 0) || (ano%4 == 0 && ano%100 != 0)
+func isLeapYear(year int) bool {
+	return (year%400 == 0) || (year%4 == 0 && year%100 != 0)
 }
 
-func corrigeDiaFrode(ano int, dia int) int {
-	leap := intAnoBissexto(ano)
-	if dia > 60-leap {
-		return dia - 60
+func fixDay(year int, day int) int {
+	leap := leapYearInt(year)
+	if day > 60-leap {
+		return day - 60
 	}
-	return dia + 305
+	return day + 305
 }
 
-func corrigeDiaFrodeVerificaBissexto(dia int, ano int) int {
-	return corrigeDiaFrode(ano, dia)
+func fixDayVerifyLeapYear(year int, day int) int {
+	return fixDay(year, day)
 }
 
-func corrigeAnoFrode(ano int) int {
-	if ano < 1790 {
-		return 1790 - ano
+func fixYear(year int) int {
+	if year < 1790 {
+		return 1790 - year
 	}
 
-	return ano - 1790
+	return year - 1790
 }
 
-func naipeAnoFrode(ano int) int {
-	return (corrigeAnoFrode(ano) / 13) % 4
+func suitYear(year int) int {
+	return (fixYear(year) / 13) % 4
 }
 
-func cartaAnoFrode(ano int) int {
-	return corrigeAnoFrode(ano) % 13
+func cardYear(year int) int {
+	return fixYear(year) % 13
 }
 
-func intAnoBissexto(ano int) int {
-	if ehAnoBissexto(ano) {
+func leapYearInt(year int) int {
+	if isLeapYear(year) {
 		return 1
 	}
 	return 0
 }
 
-func estacoesFrode(dia int, ano int) int {
-	biss := intAnoBissexto(ano)
-	if dia <= (62 - biss) {
+func seasons(day int, year int) int {
+	leap := leapYearInt(year)
+	if day <= (62 - leap) {
 		return 1
 	}
-	if dia <= (154 - biss) {
+	if day <= (154 - leap) {
 		return 2
 	}
-	if dia <= (247 - biss) {
+	if day <= (247 - leap) {
 		return 3
 	}
-	if dia <= (338 - biss) {
+	if day <= (338 - leap) {
 		return 0
 	}
-	if dia <= (367 - biss) {
+	if day <= (367 - leap) {
 		return 1
 	}
 	return 1
 }
 
-func mesNumeral(dia int) int {
-	return (dia / 28) % 13
+func cardMonth(day int) int {
+	return (day / 28) % 13
 }
 
-func naipeSemanaFrode(dia int) int {
-	return ((dia / 7) / 13) % 4
+func suitWeek(day int) int {
+	return ((day / 7) / 13) % 4
 }
 
-func cartaSemanaFrode(dia int) int {
-	return (dia / 7) % 13
+func cardWeek(day int) int {
+	return (day / 7) % 13
 }
 
-func naipeDiaFrode(dia int) int {
-	if dia == 0 {
+func suitDay(day int) int {
+	if day == 0 {
 		return 4
 	}
-	return ((dia - 1) / 13) % 4
+	return ((day - 1) / 13) % 4
 }
 
-func cartaDiaFrode(dia int) int {
-	if dia == 0 {
+func cardDay(day int) int {
+	if day == 0 {
 		return 13
 	}
-	return (dia - 1) % 13
+	return (day - 1) % 13
 }
 
-func feb(dia int, ano int) bool {
-	if dia <= (28 + intAnoBissexto(ano)) {
+func feb(day int, year int) bool {
+	if day <= (28 + leapYearInt(year)) {
 		return true
 	}
 	return false
 }
 
-func ehDataValida(dia int, mes int, ano int) bool {
-	if dia < 1 || dia > 31 || ano == 0 || mes < 1 || mes > 12 {
+func validDate(day int, month int, year int) bool {
+	if day < 1 || day > 31 || year == 0 || month < 1 || month > 12 {
 		return false
 	}
-	if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) && dia <= 31 {
+	if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && day <= 31 {
 		return true
 	}
-	if (mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia > 30 {
+	if (month == 4 || month == 6 || month == 9 || month == 11) && day > 30 {
 		return true
 	}
-	if mes == 2 {
-		return feb(dia, ano)
+	if month == 2 {
+		return feb(day, year)
 	}
 
 	return false
 }
 
-func diaDoAno(dia int, mes int, ano int) int {
-	if !ehDataValida(dia, mes, ano) {
+func dayOfYear(day int, month int, year int) int {
+	if !validDate(day, month, year) {
 		return 0
 	}
-	return contaPorMes(dia, mes, ano)
+	return countDays(day, month, year)
 }
 
-func contaPorMes(dia int, mes int, ano int) int {
-	biss := intAnoBissexto(ano)
-	switch mes {
+func countDays(day int, month int, year int) int {
+	leap := leapYearInt(year)
+	switch month {
 	case 1:
-		return dia
+		return day
 	case 2:
-		return dia + 31
+		return day + 31
 	case 3:
-		return dia + 59 + biss
+		return day + 59 + leap
 	case 4:
-		return dia + 90 + biss
+		return day + 90 + leap
 	case 5:
-		return dia + 120 + biss
+		return day + 120 + leap
 	case 6:
-		return dia + 151 + biss
+		return day + 151 + leap
 	case 7:
-		return dia + 181 + biss
+		return day + 181 + leap
 	case 8:
-		return dia + 212 + biss
+		return day + 212 + leap
 	case 9:
-		return dia + 243 + biss
+		return day + 243 + leap
 	case 10:
-		return dia + 273 + biss
+		return day + 273 + leap
 	case 11:
-		return dia + 304 + biss
+		return day + 304 + leap
 	case 12:
-		return dia + 334 + biss
+		return day + 334 + leap
 	}
 	return 0
 }
 
-func FrodeSimples(dia int, mes int, ano int) string {
-	if !ehDataValida(dia, mes, ano) {
+func SimpleVersion(day int, month int, year int) string {
+	if !validDate(day, month, year) {
 		return ""
 	}
 
-	cartas := [...]string{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "Jo", "Jd"}
-	naipes := [...]string{"O", "P", "C", "E", ""}
-	numerodedia := corrigeDiaFrodeVerificaBissexto(diaDoAno(dia, mes, ano), ano)
+	cards := [...]string{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "Jo", "Jd"}
+	suits := [...]string{"O", "P", "C", "E", ""}
+	days := fixDayVerifyLeapYear(year, dayOfYear(day, month, year))
 
-	sDia := cartas[cartaDiaFrode(numerodedia)] + naipes[naipeDiaFrode(numerodedia)]
-	sSemana := cartas[cartaSemanaFrode(numerodedia)] + naipes[naipeSemanaFrode(numerodedia)]
-	sMes := cartas[mesNumeral(numerodedia)] + naipes[estacoesFrode(dia, ano)]
-	sAno := cartas[cartaAnoFrode(ano)] + naipes[naipeAnoFrode(ano)]
-	sFrode := sDia + sSemana + sMes + sAno
+	sDay := cards[cardDay(days)] + suits[suitDay(days)]
+	sWeek := cards[cardWeek(days)] + suits[suitWeek(days)]
+	sMonth := cards[cardMonth(days)] + suits[seasons(day, year)]
+	sYear := cards[cardYear(year)] + suits[suitYear(year)]
+	output := sDay + sWeek + sMonth + sYear
 
-	return sFrode
+	return output
 }
 
-func Frode(dia int, mes int, ano int) string {
-	if !ehDataValida(dia, mes, ano) {
+func LongVersion(day int, month int, year int) string {
+	if !validDate(day, month, year) {
 		return ""
 	}
 
-	cartas := [...]string{"As", "Dois", "Tres", "Quatro", "Cinco",
+	cards := [...]string{"As", "Dois", "Tres", "Quatro", "Cinco",
 		"Seis", "Sete", "Oito", "Nove", "Dez",
 		"Valete", "Dama", "Rei", "do Curinga"}
-	naipes := [...]string{" de ouros", " de paus", " de copas", " de espadas"}
+	suites := [...]string{" de ouros", " de paus", " de copas", " de espadas"}
 
-	numerodedia := corrigeDiaFrodeVerificaBissexto(diaDoAno(dia, mes, ano), ano)
+	days := fixDayVerifyLeapYear(year, dayOfYear(day, month, year))
 
-	saida := "\n\tDia " + cartas[cartaDiaFrode(numerodedia)] + naipes[naipeDiaFrode(numerodedia)]
-	saida += "\n\tSemana " + cartas[cartaSemanaFrode(numerodedia)] + naipes[naipeSemanaFrode(numerodedia)]
-	saida += "\n\tMes " + cartas[mesNumeral(numerodedia)] + " estacao" + naipes[estacoesFrode(dia, ano)]
-	saida += "\n\tAno " + cartas[cartaAnoFrode(ano)] + naipes[naipeAnoFrode(ano)]
-	saida += "\n\t" + strconv.Itoa(dia) + "/" + strconv.Itoa(mes) + "/" + strconv.Itoa(ano) + " e dia numero " + strconv.Itoa(numerodedia)
+	output := "\n\tDia " + cards[cardDay(days)] + suites[suitDay(days)]
+	output += "\n\tSemana " + cards[cardWeek(days)] + suites[suitWeek(days)]
+	output += "\n\tMes " + cards[cardMonth(days)] + " estacao" + suites[seasons(day, year)]
+	output += "\n\tAno " + cards[cardYear(year)] + suites[suitYear(year)]
+	output += "\n\t" + strconv.Itoa(day) + "/" + strconv.Itoa(month) + "/" + strconv.Itoa(year) + " e dia numero " + strconv.Itoa(days)
 
-	return saida
+	return output
 }
 
-func cabecalhoInicial() {
+func header() {
 	fmt.Println("Entre com dia mes e ano (separados por enter) e precione ctrl-c")
 	fmt.Println("\n\tEntre com dia mes e ano (separados por espaco):")
 }
 
-func lerEntradaUsuario() string {
+func readUserInput() string {
 	reader := bufio.NewReader(os.Stdin)
 	text, _ := reader.ReadString('\n')
 
 	return text
 }
 
-func exibirDataFrode(dia int, mes int, ano int) {
-	fmt.Println("\n\tCalendario de Paciencia de Frode")
+func showOutput(day int, month int, year int) {
+	fmt.Println("\n\tCalendario de Paciencia de LongVersion")
 	fmt.Println("\t---------------------------------")
-	fmt.Println(Frode(dia, mes, ano))
-	fmt.Println("\n\tSimples -- " + FrodeSimples(dia, mes, ano))
+	fmt.Println(LongVersion(day, month, year))
+	fmt.Println("\n\tSimples -- " + SimpleVersion(day, month, year))
 }
 
-type dataSimples struct {
-	dia int
-	mes int
-	ano int
+type simpleDate struct {
+	day int
+	month int
+	year int
 }
 
-func limparEntrada(entrada string) dataSimples {
-	novaEntrada := strings.Replace(entrada, "\n", " ", -1)
-	args := strings.Split(novaEntrada, " ")
+func clearInput(input string) simpleDate {
+	newInput := strings.Replace(input, "\n", " ", -1)
+	args := strings.Split(newInput, " ")
 	if len(args) >= 3 {
-		dia, _ := strconv.Atoi(args[0])
-		mes, _ := strconv.Atoi(args[1])
-		ano, _ := strconv.Atoi(args[2])
-		return dataSimples{dia, mes, ano}
+		day, _ := strconv.Atoi(args[0])
+		month, _ := strconv.Atoi(args[1])
+		year, _ := strconv.Atoi(args[2])
+		return simpleDate{day, month, year}
 	}
 
-	return dataSimples{0, 0, 0}
+	return simpleDate{0, 0, 0}
 }
 
 func main() {
-	cabecalhoInicial()
-	entrada := lerEntradaUsuario()
-	entradaLimpa := limparEntrada(entrada)
-	exibirDataFrode(entradaLimpa.dia, entradaLimpa.mes, entradaLimpa.ano)
+	header()
+	input := readUserInput()
+	cleanInput := clearInput(input)
+	showOutput(cleanInput.day, cleanInput.month, cleanInput.year)
 }
