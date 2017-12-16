@@ -27,6 +27,7 @@ func Test_validDate(t *testing.T) {
 		{"date 1, 12, 1789 should be a valid date", args{1, 12, 1789}, true},
 		{"date 1, 12, 1790 should be a valid date", args{1, 12, 1790}, true},
 		{"date 1, 12, 9999 should be a valid date", args{1, 12, 9999}, true},
+		{"date 1, 4, 9999 should be a valid date", args{1, 4, 9999}, true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -101,6 +102,7 @@ func TestShortVersion(t *testing.T) {
 		{"date 28, 2, 2014 should be KE1O1P4P", args{28, 2, 2014}, "KE1O1P4P"},
 		{"date 1, 3, 2014 should be 1O1O1P4P", args{1, 3, 2014}, "1O1O1P4P"},
 		{"date 19, 7, 2017 should be 10C8P6P7P", args{19, 7, 2017}, "10C8P6P7P"},
+		{"invalid date should be return a empty string", args{19, 70, 2017}, ""},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -126,7 +128,17 @@ func Test_countDays(t *testing.T) {
 		{"date 31, 12, 2017 shouldBeCount 365 days", args{31, 12, 2017}, 365},
 		{"date 1, 1, 20 shouldBeCount}, 1 days", args{1, 1, 2017}, 1},
 		{"date 31, 12, 2107 shouldBeCount 365 days", args{31, 12, 2107}, 365},
-		{"date 31, 12, 2012 shouldBeCount 366 days", args{31, 12, 2012}, 366},
+		{"date 1, 11, 2012 shouldBeCount 366 days", args{1, 11, 2012}, 306},
+		{"date 1, 10, 2012 shouldBeCount 366 days", args{1, 10, 2012}, 275},
+		{"date 1, 9, 2012 shouldBeCount 366 days", args{1, 9, 2012}, 245},
+		{"date 1, 8, 2012 shouldBeCount 366 days", args{1, 8, 2012}, 214},
+		{"date 1, 7, 2012 shouldBeCount 366 days", args{1, 7, 2012}, 183},
+		{"date 1, 6, 2012 shouldBeCount 366 days", args{1, 6, 2012}, 153},
+		{"date 1, 5, 2012 shouldBeCount 366 days", args{1, 5, 2012}, 122},
+		{"date 1, 4, 2012 shouldBeCount 366 days", args{1, 4, 2012}, 92},
+		{"date 1, 3, 2012 shouldBeCount 366 days", args{1, 3, 2012}, 61},
+		{"date 1, 2, 2012 shouldBeCount 366 days", args{1, 2, 2012}, 32},
+		{"date 1, 1, 2012 shouldBeCount 366 days", args{1, 1, 2012}, 1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -201,6 +213,7 @@ func TestLongVersion(t *testing.T) {
 		want string
 	}{
 		{"default test with date 19 7 2017 should be ok", args{19, 7, 2017}, "\n\tDia Dez de copas\n\tSemana Oito de paus\n\tMes Seis estacao de paus\n\tAno Sete de paus\n\t19/7/2017 e dia numero 140"},
+		{"invalid date should be return a empty string", args{19, 70, 2017}, ""},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

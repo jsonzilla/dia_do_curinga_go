@@ -14,3 +14,23 @@ Taking into account the southern hemisphere! The seasons of the year are marked 
 * Summer and is golds
 * Spring is cup 
 * Winter is swords
+
+## Compile
+```
+go build -o build/ddc ddc.go
+```
+
+## Run
+```
+> ./build/ddc
+```
+
+## Run test
+```
+go test
+```
+
+## Check coverage
+```
+go test -coverprofile=c.out && go tool cover -html=c.out
+```
