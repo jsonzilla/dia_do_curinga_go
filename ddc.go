@@ -155,7 +155,8 @@ func countDays(day int, month int, year int) int {
 	return 0
 }
 
-func SimpleVersion(day int, month int, year int) string {
+//ShortVersion return abbr version of the frode calendar like 1O1O1P2P
+func ShortVersion(day int, month int, year int) string {
 	if !validDate(day, month, year) {
 		return ""
 	}
@@ -173,6 +174,7 @@ func SimpleVersion(day int, month int, year int) string {
 	return output
 }
 
+//LongVersion return extense version of the frode calendar portuguese language
 func LongVersion(day int, month int, year int) string {
 	if !validDate(day, month, year) {
 		return ""
@@ -210,13 +212,13 @@ func showOutput(day int, month int, year int) {
 	fmt.Println("\n\tCalendario de Paciencia de LongVersion")
 	fmt.Println("\t---------------------------------")
 	fmt.Println(LongVersion(day, month, year))
-	fmt.Println("\n\tSimples -- " + SimpleVersion(day, month, year))
+	fmt.Println("\n\tSimples -- " + ShortVersion(day, month, year))
 }
 
 type simpleDate struct {
-	day int
+	day   int
 	month int
-	year int
+	year  int
 }
 
 func clearInput(input string) simpleDate {

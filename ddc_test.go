@@ -79,7 +79,7 @@ func Test_isLeapYear(t *testing.T) {
 	}
 }
 
-func TestSimpleVersion(t *testing.T) {
+func TestShortVersion(t *testing.T) {
 	type args struct {
 		dia int
 		mes int
@@ -104,8 +104,8 @@ func TestSimpleVersion(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := SimpleVersion(tt.args.dia, tt.args.mes, tt.args.ano); got != tt.want {
-				t.Errorf("SimpleVersion() = %v, want %v", got, tt.want)
+			if got := ShortVersion(tt.args.dia, tt.args.mes, tt.args.ano); got != tt.want {
+				t.Errorf("ShortVersion() = %v, want %v", got, tt.want)
 			}
 		})
 	}
