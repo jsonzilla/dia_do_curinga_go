@@ -20,10 +20,6 @@ func fixDay(year int, day int) int {
 	return day + 305
 }
 
-func fixDayVerifyLeapYear(year int, day int) int {
-	return fixDay(year, day)
-}
-
 func fixYear(year int) int {
 	if year < 1790 {
 		return 1790 - year
@@ -94,10 +90,7 @@ func cardDay(day int) int {
 }
 
 func feb(day int, year int) bool {
-	if day <= (28 + leapYearInt(year)) {
-		return true
-	}
-	return false
+	return day <= (28 + leapYearInt(year))
 }
 
 func validDate(day int, month int, year int) bool {
@@ -163,7 +156,7 @@ func ShortVersion(day int, month int, year int) string {
 
 	cards := [...]string{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "Jo", "Jd"}
 	suits := [...]string{"O", "P", "C", "E", ""}
-	days := fixDayVerifyLeapYear(year, dayOfYear(day, month, year))
+	days := fixDay(year, dayOfYear(day, month, year))
 
 	sDay := cards[cardDay(days)] + suits[suitDay(days)]
 	sWeek := cards[cardWeek(days)] + suits[suitWeek(days)]
@@ -185,7 +178,7 @@ func LongVersion(day int, month int, year int) string {
 		"Valete", "Dama", "Rei", "do Curinga"}
 	suites := [...]string{" de ouros", " de paus", " de copas", " de espadas"}
 
-	days := fixDayVerifyLeapYear(year, dayOfYear(day, month, year))
+	days := fixDay(year, dayOfYear(day, month, year))
 
 	output := "\n\tDia " + cards[cardDay(days)] + suites[suitDay(days)]
 	output += "\n\tSemana " + cards[cardWeek(days)] + suites[suitWeek(days)]

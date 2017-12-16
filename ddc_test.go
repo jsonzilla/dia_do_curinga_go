@@ -189,31 +189,6 @@ func Test_fixDay(t *testing.T) {
 	}
 }
 
-func Test_fixDayVerifyLeapYear(t *testing.T) {
-	type args struct {
-		ano int
-		dia int
-	}
-	tests := []struct {
-		name string
-		args args
-		want int
-	}{
-		{"date 2011, 200 should be  140", args{2011, 200}, 140},
-		{"date 2011, 59 should be  364", args{2011, 59}, 364},
-		{"date 2011, 61 should be 1", args{2011, 61}, 1},
-		{"date 2011, 59 should be  364", args{2011, 59}, 364},
-		{"date 2011, 60 should be  365", args{2011, 60}, 365},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := fixDayVerifyLeapYear(tt.args.ano, tt.args.dia); got != tt.want {
-				t.Errorf("fixDayVerifyLeapYear() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
 func TestLongVersion(t *testing.T) {
 	type args struct {
 		dia int
